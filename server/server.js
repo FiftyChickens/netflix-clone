@@ -11,10 +11,8 @@ app.use(express.json());
 
 // Routes
 const movieRoutes = require("./routes/movies");
-const fruitRoutes = require("./routes/fruits");
 
 app.use("/api/movies", movieRoutes);
-app.use("/api/fruits", fruitRoutes);
 
 app.get("/", (req, res) => {
   res.send("API is running");
