@@ -1,0 +1,12 @@
+# Netflix Clone
+
+I am creating a simplified netflix clone using an existing api from [TheMovieDB](https://www.themoviedb.org/documentation/api)
+
+##
+
+- [x] Style Media Cards
+- [ ] Create Card Carousel
+- [ ] Create Modal Component
+- [ ] Add Movie/TV Filter
+- [ ] Add More Home Page Sections
+- [ ] Implement Search Page
