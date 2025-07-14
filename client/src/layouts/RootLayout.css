@@ -1,0 +1,68 @@
+/* RootLayout.css */
+.root-layout {
+  min-height: 100vh;
+  background-color: #141414;
+  color: white;
+}
+
+.netflix-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7) 10%,
+    rgba(0, 0, 0, 0)
+  );
+  transition: background-color 0.4s;
+}
+
+.netflix-header.scrolled {
+  background-color: #141414;
+}
+
+.netflix-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4%;
+  height: 68px;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.netflix-logo {
+  color: #e50914;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 1px;
+}
+
+.nav-link {
+  color: #e5e5e5;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.4s;
+}
+
+.nav-link:hover {
+  color: #b3b3b3;
+}
+
+.nav-link.active {
+  color: white;
+  font-weight: 600;
+}
+
+.netflix-main {
+  padding-top: 68px; /* To account for fixed header */
+  min-height: calc(100vh - 68px);
+}
