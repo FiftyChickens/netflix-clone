@@ -1,10 +1,10 @@
 // Basic movie type from TMDB API
 interface TMDBMovie {
-  backdrop_path: string | null;
+  backdrop_path: string;
   genre_ids: number[];
   id: number;
   overview: string;
-  poster_path: string | null;
+  poster_path: string;
   release_date: string;
   title: string;
   media_type?: "movie" | "tv";
