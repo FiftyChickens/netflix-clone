@@ -1,19 +1,19 @@
 import "./MediaCard.css";
 
 interface MediaCardProps {
-  title: string;
+  title?: string;
   backdrop: string;
 }
 
 const MediaCard: React.FC<MediaCardProps> = ({ title, backdrop }) => {
   return (
-    <div className="media-card">
+    <div className="mediaCard">
       <img
         src={`https://image.tmdb.org/t/p/original${backdrop}`}
         alt={`${title} image`}
-        className="media-card__image"
+        className="mediaCard-image"
       />
-      <h3 className="media-card__title">{title}</h3>
+      <h3 className="mediaCard-title">{title}</h3>
     </div>
   );
 };
