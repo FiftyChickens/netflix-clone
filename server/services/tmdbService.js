@@ -2,46 +2,55 @@ const axios = require("axios");
 
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 
-const axiosInstance = axios.create({
-  baseURL: TMDB_BASE_URL,
-  timeout: 5000,
-  headers: {
-    Connection: "close", // Prevent connection reuse issues
-    Accept: "application/json",
-    Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
-  },
-});
+// Export the raw functions for testing
+exports._createAxiosInstance = (apiKey) => {
+  return axios.create({
+    baseURL: TMDB_BASE_URL,
+    timeout: 5000,
+    headers: {
+      Connection: "close",
+      Accept: "application/json",
+      Authorization: `Bearer ${apiKey || process.env.TMDB_API_KEY}`,
+    },
+  });
+};
 
-const tmdbService = {
+// Use a factory pattern for the service
+exports._createTmdbService = (axiosInstance) => ({
   getTrendingMovies: async (timeWindow = "week", language = "en-US") => {
-    if (!process.env.TMDB_API_KEY) {
-      throw new Error("TMDB_API_KEY is not configured");
-    }
-    const response = await axios.get(
-      `${TMDB_BASE_URL}/trending/movie/${timeWindow}?language=${language}`,
-      {
-        headers: {
-          accept: "application/json",
-          Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
-        },
-        timeout: 5000,
-      }
-    );
+    const response = await axiosInstance.get(`/trending/movie/${timeWindow}`, {
+      params: { language },
+    });
     return response.data;
   },
   getTrendingTV: async (timeWindow = "week", language = "en-US") => {
-    const response = await axios.get(
-      `${TMDB_BASE_URL}/trending/tv/${timeWindow}?language=${language}`,
-      {
-        headers: {
-          accept: "application/json",
-          Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
-        },
-        timeout: 5000,
-      }
-    );
+    const response = await axiosInstance.get(`/trending/tv/${timeWindow}`, {
+      params: { language },
+    });
     return response.data;
   },
+});
+
+// Production instance
+const axiosInstance = exports._createAxiosInstance();
+const tmdbService = exports._createTmdbService(axiosInstance);
+
+// Add API key check middleware
+const withApiKeyCheck = (service) => {
+  return {
+    ...service,
+    getTrendingMovies: async (...args) => {
+      if (!process.env.TMDB_API_KEY) {
+        throw new Error("TMDB_API_KEY is not configured");
+      }
+      return service.getTrendingMovies(...args);
+    },
+  };
 };
 
-module.exports = tmdbService;
+module.exports = withApiKeyCheck(tmdbService);
+module.exports._testExports = {
+  _createAxiosInstance: exports._createAxiosInstance,
+  _createTmdbService: exports._createTmdbService,
+  axiosInstance,
+};
