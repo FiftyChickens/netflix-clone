@@ -11,8 +11,10 @@ app.use(express.json());
 
 // Routes
 const movieRoutes = require("./routes/movies");
+const tvRoutes = require("./routes/tv");
 
 app.use("/api/movies", movieRoutes);
+app.use("/api/tv", tvRoutes);
 
 app.get("/", (req, res) => {
   res.send("API is running");
@@ -22,3 +24,4 @@ app.listen(8080, () => {
   console.log("Server started on port 8080");
   console.log("http://localhost:8080/api");
 });
+``;
