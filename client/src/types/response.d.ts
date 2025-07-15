@@ -1,11 +1,9 @@
-import type { TMDBMovie } from "./tmdb";
+import type { TMDBMedia } from "./tmdb";
 
 interface ApiResponse {
-  data: {
-    success: boolean;
-    timeStamp: Date;
-    data: { page: number; results: [TMDBMovie]; total_pages: number };
-  };
+  success: boolean;
+  timeStamp: Date;
+  data: { page: number; results: [TMDBMedia]; total_pages: number };
 }
 
 export type { ApiResponse };
