@@ -12,7 +12,6 @@ const tvController = {
         timestamp: new Date().toISOString(),
       });
     } catch (error) {
-      console.error("TMDB API Error:", error.response?.data || error.message);
       res.status(error.response?.status || 500).json({
         success: false,
         error:
