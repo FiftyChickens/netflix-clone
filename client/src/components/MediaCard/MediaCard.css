@@ -1,46 +1,58 @@
-@media (width >= 70rem) {
-  .media-card__image {
-    width: 21.5vw;
+@media (width > 80rem) {
+  .mediaCard-image {
+    width: 20rem;
   }
-  .media-card__title {
-    font-size: 1.42vw;
-  }
-  .media-card {
-    width: 21.5vw;
-  }
-}
-
-@media (width < 70rem) {
-  .media-card__image {
-    width: 15rem;
-  }
-  .media-card__title {
+  .mediaCard-title {
     font-size: 1rem;
   }
-  .media-card {
+  .mediaCard {
+    width: 20rem;
+  }
+}
+
+@media (width <= 80rem) {
+  .mediaCard-image {
+    width: 20rem;
+  }
+  .mediaCard-title {
+    font-size: 1rem;
+  }
+  .mediaCard {
+    width: 20rem;
+  }
+}
+
+@media (width <= 64rem) {
+  .mediaCard-image {
+    width: 17.5rem;
+  }
+  .mediaCard-title {
+    font-size: 0.8rem;
+  }
+  .mediaCard {
+    width: 17.5rem;
+  }
+}
+
+@media (width <= 40rem) {
+  .mediaCard-image {
+    width: 15rem;
+  }
+  .mediaCard-title {
+    font-size: 0.7rem;
+  }
+  .mediaCard {
     width: 15rem;
   }
 }
 
-@media (width >= 79rem) {
-  .media-card__image {
-    width: 17rem;
-  }
-  .media-card__title {
-    font-size: 1.12rem;
-  }
-  .media-card {
-    width: 17rem;
-  }
-}
-
-.media-card__title {
+.mediaCard-title {
   margin-top: 0.5rem;
   display: flex;
   justify-content: center;
 }
 
-.media-card {
+.mediaCard {
   line-height: 0;
   display: flex;
   flex-direction: column;
