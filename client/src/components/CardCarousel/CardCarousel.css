@@ -1,0 +1,38 @@
+.media-scroller {
+  display: flex;
+  overflow-x: auto;
+  gap: 0.8rem;
+  padding: 1rem 0;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.media-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-indicators {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+
+.indicator {
+  width: 24px;
+  height: 4px;
+  z-index: 5;
+  background-color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.indicator.active {
+  background-color: #e50914;
+  transform: scaleY(1.5);
+}
+
+.indicator:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
