@@ -4,7 +4,7 @@ const cors = require("cors");
 
 const app = express();
 
-// Real controllers (used by your route files)
+// Controllers
 const movieRoutes = require("./routes/movies");
 const tvRoutes = require("./routes/tv");
 
@@ -17,7 +17,10 @@ app.use(express.json());
 
 // API routes
 app.use("/api/movies", movieRoutes);
+app.use("/api/genre", movieRoutes);
+
 app.use("/api/tv", tvRoutes);
+app.use("/api/genre", tvRoutes);
 
 app.get("/", (req, res) => {
   res.send("API is running");

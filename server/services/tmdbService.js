@@ -15,6 +15,7 @@ exports._createAxiosInstance = (apiKey) => {
   });
 };
 
+const ALL_GENRES = [16, 35, 80, 99, 18, 10751, 9648, 37];
 // Use a factory pattern for the service
 exports._createTmdbService = (axiosInstance) => ({
   getTrendingMovies: async (timeWindow = "week", language = "en-US") => {
@@ -23,10 +24,46 @@ exports._createTmdbService = (axiosInstance) => ({
     });
     return response.data;
   },
+  getMoviesByGenre: async (genreId) => {
+    const withoutGenres = ALL_GENRES.filter(
+      (id) => id !== Number(genreId)
+    ).join(",");
+    const response = await axiosInstance.get("/discover/movie", {
+      params: {
+        language: "en-US",
+        sort_by: "popularity.desc",
+        with_genres: genreId,
+        without_genres: withoutGenres,
+      },
+    });
+    console.log(
+      `Requesting genre ${genreId} with without_genres: ${withoutGenres}`
+    );
+
+    return response.data;
+  },
   getTrendingTV: async (timeWindow = "week", language = "en-US") => {
     const response = await axiosInstance.get(`/trending/tv/${timeWindow}`, {
       params: { language },
     });
+    return response.data;
+  },
+  getTvByGenre: async (genreId) => {
+    const withoutGenres = ALL_GENRES.filter(
+      (id) => id !== Number(genreId)
+    ).join(",");
+    const response = await axiosInstance.get("/discover/tv", {
+      params: {
+        language: "en-US",
+        sort_by: "popularity.desc",
+        with_genres: genreId,
+        without_genres: withoutGenres,
+      },
+    });
+    console.log(
+      `Requesting genre ${genreId} with without_genres: ${withoutGenres}`
+    );
+
     return response.data;
   },
 });

@@ -8,5 +8,5 @@ I am creating a simplified netflix clone using an existing api from [TheMovieDB]
 - [x] Create Card Carousel
 - [ ] Create Modal Component
 - [ ] Add Movie/TV Filter
-- [ ] Add More Home Page Sections
+- [x] Add More Sections To Home Page
 - [ ] Implement Search Page
