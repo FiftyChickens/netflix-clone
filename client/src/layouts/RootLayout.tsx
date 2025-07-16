@@ -1,9 +1,11 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import "./RootLayout.css";
 import { useEffect, useState } from "react";
+import NavBar from "../components/NavBar/NavBar";
 
 const RootLayout = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showMovies, setShowMovies] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,25 +22,13 @@ const RootLayout = () => {
 
   return (
     <div className="root-layout">
-      <header className={`netflix-header ${isScrolled ? "scrolled" : ""}`}>
-        <nav className="netflix-nav">
-          <div className="nav-left">
-            <h1 className="netflix-logo">CLONEFLIX</h1>
-            <NavLink className="nav-link" to="/">
-              Home
-            </NavLink>
-            <NavLink className="nav-link" to="/search">
-              Search
-            </NavLink>
-          </div>
-          <div className="nav-right">
-            {/* You can add user avatar/icon here later */}
-          </div>
-        </nav>
-      </header>
-
-      <main className="netflix-main">
-        <Outlet />
+      <NavBar
+        isScrolled={isScrolled}
+        showMovies={showMovies}
+        setShowMovies={setShowMovies}
+      />
+      <main className="root-main">
+        <Outlet context={{ showMovies }} />
       </main>
     </div>
   );
