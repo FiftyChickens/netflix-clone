@@ -1,5 +1,7 @@
 // Basic movie type from TMDB API
 interface TMDBMedia {
+  first_air_date: string;
+  vote_average: number;
   backdrop_path: string;
   genre_ids: number[];
   id: number;

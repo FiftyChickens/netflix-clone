@@ -1,0 +1,63 @@
+/* components/MediamediaModal/MediamediaModal.css */
+.mediaModal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Changed from center to flex-start */
+  z-index: 1000;
+  overflow-y: auto; /* Add scroll to overlay */
+  padding: 20px 0; /* Add some breathing room */
+}
+
+.mediaModal-content {
+  background-color: #181818;
+  border-radius: 8px;
+  width: 90vw;
+  max-width: 800px;
+  margin: 20px 0; /* Added vertical margin */
+  position: relative;
+}
+
+.mediaModal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.mediaModal-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.mediaModal-image {
+  width: auto;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.mediaModal-details {
+  padding: 20px;
+  color: white;
+}
+
+.mediaModal-details h2 {
+  margin-top: 0;
+}
+
+.mediaModal-meta {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+  color: #aaa;
+}

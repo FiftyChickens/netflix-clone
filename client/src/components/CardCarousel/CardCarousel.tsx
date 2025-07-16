@@ -2,6 +2,7 @@ import { useRef, useState, useEffect, useMemo } from "react";
 import type { TMDBMedia } from "../../types/tmdb";
 import MediaCard from "../MediaCard/MediaCard";
 import "./CardCarousel.css";
+import MediaModal from "../MediaModal/MediaModal";
 
 interface MovieCarouselProps {
   media: TMDBMedia[];
@@ -14,6 +15,8 @@ const MovieCarousel = ({ media, indicatorPerCard }: MovieCarouselProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [cardWidth, setCardWidth] = useState(0);
   const [visibleCards, setVisibleCards] = useState(1);
+  const [selectedMedia, setSelectedMedia] = useState<TMDBMedia | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Calculate dimensions and visible cards
   useEffect(() => {
@@ -72,6 +75,15 @@ const MovieCarousel = ({ media, indicatorPerCard }: MovieCarouselProps) => {
     }
   };
 
+  const handleCardClick = (mediaItem: TMDBMedia) => {
+    setSelectedMedia(mediaItem);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedMedia(null);
+  };
   return (
     <div className="trending">
       {/* Hidden measurement card */}
@@ -98,10 +110,17 @@ const MovieCarousel = ({ media, indicatorPerCard }: MovieCarouselProps) => {
           <MediaCard
             key={mediaItem.id}
             title={mediaItem.title || mediaItem.name}
-            backdrop={mediaItem.backdrop_path}
+            backdrop={mediaItem.poster_path}
+            onClick={() => {
+              handleCardClick(mediaItem);
+            }}
           />
         ))}
       </div>
+
+      {isModalOpen && selectedMedia && (
+        <MediaModal media={selectedMedia} onClose={closeModal} />
+      )}
     </div>
   );
 };

@@ -1,48 +1,48 @@
 @media (width > 80rem) {
   .mediaCard-image {
-    width: 20rem;
+    width: 13rem;
   }
   .mediaCard-title {
     font-size: 1rem;
   }
   .mediaCard {
-    width: 20rem;
+    width: 13rem;
   }
 }
 
 @media (width <= 80rem) {
   .mediaCard-image {
-    width: 20rem;
+    width: 13rem;
   }
   .mediaCard-title {
     font-size: 1rem;
   }
   .mediaCard {
-    width: 20rem;
+    width: 13rem;
   }
 }
 
 @media (width <= 64rem) {
   .mediaCard-image {
-    width: 17.5rem;
+    width: 10rem;
   }
   .mediaCard-title {
     font-size: 0.8rem;
   }
   .mediaCard {
-    width: 17.5rem;
+    width: 10rem;
   }
 }
 
 @media (width <= 40rem) {
   .mediaCard-image {
-    width: 15rem;
+    width: 7rem;
   }
   .mediaCard-title {
     font-size: 0.7rem;
   }
   .mediaCard {
-    width: 15rem;
+    width: 7rem;
   }
 }
 
