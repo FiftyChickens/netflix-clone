@@ -2,7 +2,6 @@ import { useOutletContext } from "react-router-dom";
 import MediaSection from "../../components/MediaSection/MediaSection";
 import { useMedia } from "../../hooks/useMedia";
 import "./HomePage.css";
-import MediaModal from "../../components/MediaModal/MediaModal";
 
 const HomePage = () => {
   const { showMovies } = useOutletContext<{ showMovies: boolean }>();
@@ -19,9 +18,9 @@ const HomePage = () => {
   ];
   const filter = showMovies ? "movies" : "tv";
 
-  // const genreMedia = Object.fromEntries(
-  //   genres.map(({ id }) => [id, useMedia(`/api/${filter}/genre?genre=${id}`)])
-  // );
+  const genreMedia = Object.fromEntries(
+    genres.map(({ id }) => [id, useMedia(`/api/${filter}/genre?genre=${id}`)])
+  );
   const trendingMedia = useMedia(`/api/${filter}/trending`);
 
   return (
@@ -30,13 +29,13 @@ const HomePage = () => {
         title={`Trending ${showMovies ? "Movies" : "TV Shows"}`}
         media={trendingMedia.media}
       />
-      {/* {genres.map(({ id, name }) => (
+      {genres.map(({ id, name }) => (
         <MediaSection
           key={id}
-          title={`${name} Movies`}
+          title={`${name} ${showMovies ? "Movies" : "TV Shows"}`}
           media={genreMedia[id].media}
         />
-      ))} */}
+      ))}
     </div>
   );
 };
