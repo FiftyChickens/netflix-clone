@@ -4,7 +4,7 @@ import type { TMDBMedia } from "../../types/tmdb";
 import "./MediaSection.css";
 
 interface MovieSectionProps {
-  title: string;
+  title?: string;
   media: TMDBMedia[];
 }
 

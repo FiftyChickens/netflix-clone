@@ -8,7 +8,7 @@ import {
 // pages
 import HomePage from "./pages/HomePage/HomePage";
 import RootLayout from "./layouts/RootLayout";
-import SearchPage from "./pages/SearchPage/SearchPage";
+import SearchPage from "./components/SearchBar/SearchModal/SearchModal";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

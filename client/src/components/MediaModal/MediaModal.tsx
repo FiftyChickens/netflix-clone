@@ -45,7 +45,7 @@ const MediaModal = ({ media, onClose }: MediaModalProps) => {
     .join(", ");
 
   return (
-    <div className="mediaModal-overlay" onClick={onClose}>
+    <div className="overlay" onClick={onClose}>
       <div className="mediaModal-content" onClick={(e) => e.stopPropagation()}>
         <button className="mediaModal-close" onClick={onClose}>
           &times;
