@@ -1,0 +1,31 @@
+.searchPage-container {
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+}
+
+.search-bar {
+  margin-bottom: 30px;
+}
+
+.search-bar input {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.search-bar input:focus {
+  border-color: #007bff;
+}
+
+@media (max-width: 768px) {
+  .search-bar input {
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+}
