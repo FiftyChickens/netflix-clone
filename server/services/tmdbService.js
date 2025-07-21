@@ -36,9 +36,6 @@ exports._createTmdbService = (axiosInstance) => ({
         without_genres: withoutGenres,
       },
     });
-    console.log(
-      `Requesting genre ${genreId} with without_genres: ${withoutGenres}`
-    );
 
     return response.data;
   },
@@ -60,10 +57,17 @@ exports._createTmdbService = (axiosInstance) => ({
         without_genres: withoutGenres,
       },
     });
-    console.log(
-      `Requesting genre ${genreId} with without_genres: ${withoutGenres}`
-    );
 
+    return response.data;
+  },
+  searchMulti: async (query) => {
+    const response = await axiosInstance.get("/search/multi", {
+      params: {
+        query,
+        language: "en-US",
+        page: 1,
+      },
+    });
     return response.data;
   },
 });

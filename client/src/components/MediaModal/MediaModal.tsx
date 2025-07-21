@@ -45,33 +45,38 @@ const MediaModal = ({ media, onClose }: MediaModalProps) => {
     .join(", ");
 
   return (
-    <div className="mediaModal-overlay" onClick={onClose}>
-      <div className="mediaModal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="mediaModal-close" onClick={onClose}>
-          &times;
-        </button>
+    <section className="mediaModal">
+      <div className="mediaModal-overlay" onClick={onClose}>
+        <div
+          className="mediaModal-content"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button className="mediaModal-close" onClick={onClose}>
+            &times;
+          </button>
 
-        <div className="mediaModal-body">
-          <img
-            src={`https://image.tmdb.org/t/p/w780${media.backdrop_path}`}
-            alt={media.title || media.name}
-            className="mediaModal-image"
-          />
+          <div className="mediaModal-body">
+            <img
+              src={`https://image.tmdb.org/t/p/w780${media.backdrop_path}`}
+              alt={media.title || media.name}
+              className="mediaModal-image"
+            />
 
-          <div className="mediaModal-details">
-            <h2>{media.title || media.name}</h2>
-            <p>{media.overview}</p>
-            <div className="mediaModal-meta">
-              <span>{media.first_air_date || media.release_date}</span>
-              {media.vote_average && (
-                <span>Rating: {media.vote_average.toFixed(1)}/10</span>
-              )}
-              {mediaGenres && <span>Genres: {mediaGenres}</span>}
+            <div className="mediaModal-details">
+              <h2>{media.title || media.name}</h2>
+              <p>{media.overview}</p>
+              <div className="mediaModal-meta">
+                <span>{media.first_air_date || media.release_date}</span>
+                {media.vote_average && (
+                  <span>Rating: {media.vote_average.toFixed(1)}/10</span>
+                )}
+                {mediaGenres && <span>Genres: {mediaGenres}</span>}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

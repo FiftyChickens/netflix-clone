@@ -2,21 +2,23 @@ import { useRef, useState, useEffect, useMemo } from "react";
 import type { TMDBMedia } from "../../types/tmdb";
 import MediaCard from "../MediaCard/MediaCard";
 import "./CardCarousel.css";
-import MediaModal from "../MediaModal/MediaModal";
 
-interface MovieCarouselProps {
+interface CardCarouselProps {
   media: TMDBMedia[];
   indicatorPerCard: number;
+  handleCardClick: (media: TMDBMedia) => void;
 }
 
-const MovieCarousel = ({ media, indicatorPerCard }: MovieCarouselProps) => {
+const CardCarousel = ({
+  media,
+  indicatorPerCard,
+  handleCardClick,
+}: CardCarouselProps) => {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const mediaCardRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [cardWidth, setCardWidth] = useState(0);
   const [visibleCards, setVisibleCards] = useState(1);
-  const [selectedMedia, setSelectedMedia] = useState<TMDBMedia | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Calculate dimensions and visible cards
   useEffect(() => {
@@ -44,7 +46,7 @@ const MovieCarousel = ({ media, indicatorPerCard }: MovieCarouselProps) => {
     return () => resizeObserver.disconnect();
   }, []);
 
-  // Calculate the optimal indicator count
+  // Calculate the optimal cardCarousel-indicator count
   const indicatorCount = useMemo(() => {
     const baseCount = Math.ceil(media.length / indicatorPerCard);
     return Math.min(
@@ -75,17 +77,8 @@ const MovieCarousel = ({ media, indicatorPerCard }: MovieCarouselProps) => {
     }
   };
 
-  const handleCardClick = (mediaItem: TMDBMedia) => {
-    setSelectedMedia(mediaItem);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedMedia(null);
-  };
   return (
-    <div className="trending">
+    <section className="cardCarousel">
       {/* Hidden measurement card */}
       <div
         ref={mediaCardRef}
@@ -95,19 +88,26 @@ const MovieCarousel = ({ media, indicatorPerCard }: MovieCarouselProps) => {
         <div className="mediaCard-image" />
       </div>
 
-      <div className="scroll-indicators">
+      <div className="cardCarousel-scroll-indicators">
         {Array.from({ length: indicatorCount }).map((_, index) => (
           <div
             key={index}
-            className={`indicator ${index === activeIndex ? "active" : ""}`}
+            className={`cardCarousel-indicator ${
+              index === activeIndex ? "active" : ""
+            }`}
             onClick={() => scrollToIndex(index)}
           />
         ))}
       </div>
 
-      <div className="media-scroller" ref={scrollerRef} onScroll={handleScroll}>
+      <div
+        className="cardCarousel-scroller"
+        ref={scrollerRef}
+        onScroll={handleScroll}
+      >
         {media.map((mediaItem) => (
           <MediaCard
+            className="cardCarousel-mediaCard"
             key={mediaItem.id}
             title={mediaItem.title || mediaItem.name}
             backdrop={mediaItem.poster_path}
@@ -117,12 +117,8 @@ const MovieCarousel = ({ media, indicatorPerCard }: MovieCarouselProps) => {
           />
         ))}
       </div>
-
-      {isModalOpen && selectedMedia && (
-        <MediaModal media={selectedMedia} onClose={closeModal} />
-      )}
-    </div>
+    </section>
   );
 };
 
-export default MovieCarousel;
+export default CardCarousel;

@@ -2,26 +2,33 @@ import { useOutletContext } from "react-router-dom";
 import MediaSection from "../../components/MediaSection/MediaSection";
 import { useMedia } from "../../hooks/useMedia";
 import "./HomePage.css";
-import MediaModal from "../../components/MediaModal/MediaModal";
+import SearchModal from "../../components/SearchModal/SearchModal";
+import type { TMDBMedia } from "../../types/tmdb";
+
+interface OutletContext {
+  showMovies: boolean;
+  handleCardClick: (media: TMDBMedia) => void;
+}
 
 const HomePage = () => {
-  const { showMovies } = useOutletContext<{ showMovies: boolean }>();
+  const { showMovies, handleCardClick } = useOutletContext<OutletContext>();
 
   const genres = [
-    { id: 10751, name: "Family" },
-    { id: 35, name: "Comedy" },
-    { id: 16, name: "Animation" },
-    { id: 37, name: "Western" },
-    { id: 80, name: "Crime" },
-    { id: 9648, name: "Mystery" },
-    { id: 18, name: "Drama" },
-    { id: 99, name: "Documentary" },
+    { id: 10751, genre: "Family" },
+    { id: 35, genre: "Comedy" },
+    { id: 16, genre: "Animation" },
+    { id: 37, genre: "Western" },
+    { id: 80, genre: "Crime" },
+    { id: 9648, genre: "Mystery" },
+    { id: 18, genre: "Drama" },
+    { id: 99, genre: "Documentary" },
   ];
   const filter = showMovies ? "movies" : "tv";
 
-  // const genreMedia = Object.fromEntries(
-  //   genres.map(({ id }) => [id, useMedia(`/api/${filter}/genre?genre=${id}`)])
-  // );
+  const genreMedia = Object.fromEntries(
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    genres.map(({ id }) => [id, useMedia(`/api/${filter}/genre?genre=${id}`)])
+  );
   const trendingMedia = useMedia(`/api/${filter}/trending`);
 
   return (
@@ -29,14 +36,17 @@ const HomePage = () => {
       <MediaSection
         title={`Trending ${showMovies ? "Movies" : "TV Shows"}`}
         media={trendingMedia.media}
+        handleCardClick={handleCardClick}
       />
-      {/* {genres.map(({ id, name }) => (
+      {genres.map(({ id, genre }) => (
         <MediaSection
           key={id}
-          title={`${name} Movies`}
+          title={`${genre}`}
           media={genreMedia[id].media}
+          handleCardClick={handleCardClick}
         />
-      ))} */}
+      ))}
+      <SearchModal />
     </div>
   );
 };

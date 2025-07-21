@@ -1,0 +1,31 @@
+.searchModal-container {
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  z-index: 5;
+}
+
+.searchModal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  overflow-x: auto;
+  padding: 20px 0;
+}
+
+.seachModal-cardlayout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.searchModal-mediaCard {
+  padding: 3rem 0.3rem 0;
+}

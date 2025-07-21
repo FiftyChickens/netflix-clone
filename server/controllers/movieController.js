@@ -29,7 +29,6 @@ const movieController = {
         .json({ success: false, error: "Missing genre parameter" });
     }
 
-    console.log(`Requesting genre ${genreId}`);
     try {
       const data = await tmdbService.getMoviesByGenre(genreId);
       res.json({

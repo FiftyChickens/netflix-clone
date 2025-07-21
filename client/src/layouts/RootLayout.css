@@ -8,3 +8,7 @@
   padding-top: 68px; /* To account for fixed header */
   min-height: calc(100vh - 68px);
 }
+
+button {
+  cursor: pointer;
+}

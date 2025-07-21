@@ -6,7 +6,7 @@ I am creating a simplified netflix clone using an existing api from [TheMovieDB]
 
 - [x] Style Media Cards
 - [x] Create Card Carousel
-- [ ] Create Modal Component
-- [ ] Add Movie/TV Filter
+- [x] Create Modal Component
+- [x] Add Movie/TV Filter
 - [x] Add More Sections To Home Page
-- [ ] Implement Search Page
+- [x] Implement Search Page

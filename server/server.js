@@ -7,6 +7,7 @@ const app = express();
 // Controllers
 const movieRoutes = require("./routes/movies");
 const tvRoutes = require("./routes/tv");
+const searchRoutes = require("./routes/search");
 
 // CORS and middleware
 const corsOptions = {
@@ -21,6 +22,8 @@ app.use("/api/genre", movieRoutes);
 
 app.use("/api/tv", tvRoutes);
 app.use("/api/genre", tvRoutes);
+
+app.use("/api/search", searchRoutes);
 
 app.get("/", (req, res) => {
   res.send("API is running");
