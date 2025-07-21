@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import SearchIcon from "../../assets/SearchIcon";
+import SearchIcon from "../../../assets/SearchIcon";
 import "./SearchBar.css";
 
 interface SearchBarProps {

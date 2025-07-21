@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import "./NavBar.css";
-import SearchBar from "../SearchBar/SearchBar";
+import SearchBar from "../SearchModal/SearchBar/SearchBar";
 
 interface NavBarProps {
   isScrolled: boolean;
