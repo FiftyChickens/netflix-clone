@@ -16,6 +16,7 @@ export const useMedia = (endpoint: string) => {
         setMedia(res.data.data.results);
       } catch (err) {
         setError("Failed to fetch media");
+        console.error("useMedia error ", err);
       } finally {
         setLoading(false);
       }

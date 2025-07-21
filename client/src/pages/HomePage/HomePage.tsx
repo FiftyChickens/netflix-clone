@@ -26,6 +26,7 @@ const HomePage = () => {
   const filter = showMovies ? "movies" : "tv";
 
   const genreMedia = Object.fromEntries(
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     genres.map(({ id }) => [id, useMedia(`/api/${filter}/genre?genre=${id}`)])
   );
   const trendingMedia = useMedia(`/api/${filter}/trending`);
