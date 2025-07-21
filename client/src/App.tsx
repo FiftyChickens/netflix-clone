@@ -8,14 +8,12 @@ import {
 // pages
 import HomePage from "./pages/HomePage/HomePage";
 import RootLayout from "./layouts/RootLayout";
-import SearchPage from "./components/SearchBar/SearchModal/SearchModal";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<HomePage />} />
       <Route path="browse" element={<HomePage />} />
-      <Route path="search" element={<SearchPage />} />
     </Route>
   )
 );
