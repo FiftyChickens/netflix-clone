@@ -2,11 +2,15 @@ import { Outlet } from "react-router-dom";
 import "./RootLayout.css";
 import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar/NavBar";
+import useMediaModal from "../hooks/useMediaModal";
+import MediaModal from "../components/MediaModal/MediaModal";
 
 const RootLayout = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showMovies, setShowMovies] = useState(true);
   const [searchValue, setSearchValue] = useState("");
+  const { selectedMedia, isModalOpen, handleCardClick, closeModal } =
+    useMediaModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,8 +35,11 @@ const RootLayout = () => {
         setSearchValue={setSearchValue}
       />
       <main className="root-main">
-        <Outlet context={{ showMovies, searchValue }} />
+        <Outlet context={{ showMovies, searchValue, handleCardClick }} />
       </main>
+      {isModalOpen && selectedMedia && (
+        <MediaModal media={selectedMedia} onClose={closeModal} />
+      )}
     </div>
   );
 };

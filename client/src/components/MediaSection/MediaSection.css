@@ -1,9 +1,14 @@
 .mediaSection-title {
   position: relative;
-  top: 2.5rem;
+  top: 2.4rem;
   padding-left: 1rem;
+  margin-top: 0rem;
 }
 
 .mediaSection-section {
   margin-top: -3rem;
+}
+
+.mediaSection-section:first-child {
+  margin-top: 0;
 }

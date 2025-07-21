@@ -1,4 +1,4 @@
-.media-scroller {
+.cardCarousel-scroller {
   display: flex;
   overflow-x: auto;
   gap: 0.8rem;
@@ -8,18 +8,18 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.media-scroller::-webkit-scrollbar {
+.cardCarousel-scroller::-webkit-scrollbar {
   display: none;
 }
 
-.scroll-indicators {
+.cardCarousel-scroll-indicators {
   display: flex;
   justify-content: flex-end;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0 0.5rem 1rem;
 }
 
-.indicator {
+.cardCarousel-indicator {
   width: 24px;
   height: 4px;
   z-index: 5;
@@ -28,11 +28,16 @@
   transition: all 0.2s ease;
 }
 
-.indicator.active {
+.cardCarousel-indicator.active {
   background-color: #e50914;
   transform: scaleY(1.5);
 }
 
-.indicator:hover {
+.cardCarousel-indicator:hover {
   background-color: rgba(255, 255, 255, 0.6);
+}
+
+.cardCarousel-mediaCard {
+  padding: 0;
+  margin: 0;
 }

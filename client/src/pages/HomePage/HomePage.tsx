@@ -2,10 +2,16 @@ import { useOutletContext } from "react-router-dom";
 import MediaSection from "../../components/MediaSection/MediaSection";
 import { useMedia } from "../../hooks/useMedia";
 import "./HomePage.css";
-import SearchModal from "../../components/SearchBar/SearchModal/SearchModal";
+import SearchModal from "../../components/SearchModal/SearchModal";
+import type { TMDBMedia } from "../../types/tmdb";
+
+interface OutletContext {
+  showMovies: boolean;
+  handleCardClick: (media: TMDBMedia) => void;
+}
 
 const HomePage = () => {
-  const { showMovies } = useOutletContext<{ showMovies: boolean }>();
+  const { showMovies, handleCardClick } = useOutletContext<OutletContext>();
 
   const genres = [
     { id: 10751, genre: "Family" },
@@ -29,12 +35,14 @@ const HomePage = () => {
       <MediaSection
         title={`Trending ${showMovies ? "Movies" : "TV Shows"}`}
         media={trendingMedia.media}
+        handleCardClick={handleCardClick}
       />
       {genres.map(({ id, genre }) => (
         <MediaSection
           key={id}
           title={`${genre}`}
           media={genreMedia[id].media}
+          handleCardClick={handleCardClick}
         />
       ))}
       <SearchModal />
